@@ -28,3 +28,12 @@ class Post(TimestampedModel):
     class Meta:
         ordering = ["-id"]
 
+
+class Comment(TimestampedModel):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    message = models.TextField()
+
+    class Meta:
+        ordering = ["-id"]
+
