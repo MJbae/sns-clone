@@ -9,7 +9,7 @@ from .serializer import PostSerializer
 
 
 class PostViewSet(ModelViewSet):
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().select_related("author")
     serializer_class = PostSerializer
 
     def get_queryset(self):
@@ -21,4 +21,3 @@ class PostViewSet(ModelViewSet):
         )
         qs = qs.filter(created_at__gte=timesince)
         return qs
-
