@@ -15,3 +15,12 @@ class SignupView(CreateAPIView):
 class SuggestionListAPIView(ListAPIView):
     queryset = get_user_model().objects.all()
     serializer_class = SuggestionUserSerializer
+
+    def get_queryset(self):
+        qs = (
+            super()
+                .get_queryset()
+                .exclude(pk=self.request.user.pk)
+                .exclude(pk__in=self.request.user.following_set.all())
+        )
+        return qs
