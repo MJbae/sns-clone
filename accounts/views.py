@@ -23,9 +23,9 @@ class SuggestionListAPIView(ListAPIView):
     def get_queryset(self):
         qs = (
             super()
-                .get_queryset()
-                .exclude(pk=self.request.user.pk)
-                .exclude(pk__in=self.request.user.following_set.all())
+            .get_queryset()
+            .exclude(pk=self.request.user.pk)
+            .exclude(pk__in=self.request.user.following_set.all())
         )
         return qs
 
