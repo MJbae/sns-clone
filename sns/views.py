@@ -19,6 +19,11 @@ class PostViewSet(ModelViewSet):
     )
     serializer_class = PostSerializer
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context["request"] = self.request
+        return context
+
     def get_queryset(self):
         timesince = timezone.now() - timedelta(days=3)
         qs = super().get_queryset()
