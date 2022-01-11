@@ -5,6 +5,17 @@ from .models import Post, Comment
 
 
 class AuthorSerializer(serializers.ModelSerializer):
+    avatar_url = serializers.SerializerMethodField("avatar_url_field")
+
+    def avatar_url_field(self, author):
+        if re.match(r"^https?://", author.avatar_url):
+            return author.avatar_url
+
+        if "request" in self.context:
+            scheme = self.context.get("request").scheme
+            host = self.context.get("request").get_host()
+            return scheme + "://" + host + author.avatar_url
+
     class Meta:
         model = get_user_model()
         fields = ["username", "name", "avatar_url"]
