@@ -38,7 +38,7 @@ class PostViewSet(ModelViewSet):
         serializer = serializer.save(author=self.request.user)
         return super().perform_create(serializer)
 
-    @action(detail=True, methods=['post'])
+    @action(detail=True, methods=["post"])
     def like(self):
         post = self.get_object()
         post.like_user_set.add(self.request.user)
