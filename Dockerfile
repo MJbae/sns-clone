@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-RUN apt-get update && apt-get install -y python3-pip && apt-get clean
+RUN apt-get update && apt-get install -y python3-pip libpq-dev libjpeg-dev zlib1g-dev && apt-get clean
 
 WORKDIR /djangoproject
 ADD . /djangoproject
