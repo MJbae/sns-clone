@@ -8,3 +8,4 @@ markdown
 django-filter
 djangorestframework-jwt
 django-pydenticon
+python-dotenv
