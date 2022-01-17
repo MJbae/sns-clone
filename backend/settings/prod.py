@@ -6,15 +6,15 @@ ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(",")
 STATICFILES_STORAGE = "backend.storages.StaticAzureStorage"
 DEFAULT_FILE_STORAGE = "backend.storages.MediaAzureStorage"
 
-AZURE_ACCOUNT_NAME = os.environ["AZURE_ACCOUNT_NAME"]
-AZURE_ACCOUNT_KEY = os.environ["AZURE_ACCOUNT_KEY"]
+AZURE_ACCOUNT_NAME = os.environ.get("AZURE_ACCOUNT_NAME")
+AZURE_ACCOUNT_KEY = os.environ.get("AZURE_ACCOUNT_KEY")
 
 DATABASES = {
     "default": {
         "ENGINE": os.environ.get("DB_ENGINE", "django.db.backends.postgresql"),
-        "HOST": os.environ["DB_HOST"],
-        "USER": os.environ["DB_USER"],
-        "PASSWORD": os.environ["DB_PASSWORD"],
+        "HOST": os.environ.get("DB_HOST"),
+        "USER": os.environ.get("DB_USER"),
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
         "NAME": os.environ.get("DB_NAME", "postgres"),
     },
 }
